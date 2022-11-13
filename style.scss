@@ -1,0 +1,73 @@
+.review-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 265px;
+    height: 16px;
+
+    &:not(:checked) > .review-rating__input {
+        display: none;
+    }
+
+    &:not(:checked) > .review-rating__label {
+         
+        width: 22px;
+        padding: 0;
+        cursor: pointer;
+        height: 16px;
+        line-height: 1;
+
+        &::before {
+            content: "";
+            background-color: $gray-100;
+        }
+    }
+
+    &:not(:checked) > .review-rating__label {
+        &::before {
+            content: "";
+            position: absolute;
+            mask-image: url('../images/sprite.svg#icon-star');
+            background-color: $gray;
+            width: 16px;
+            height: 16px;
+        }
+    }
+    & > .review-rating__input:checked ~ .review-rating__label {
+        &::before {
+            content: "";
+            background-color: $star;
+        }
+    }
+
+    &:not(:checked) > .review-rating__label:hover,
+    &:not(:checked) > .review-rating__label:hover ~ .review-rating__label {
+        &::before {
+            content: "";
+            background-color: $star;
+        }
+    }
+
+    & > .review-rating__input:checked + .review-rating__label:hover,
+    & > .review-rating__input:checked + .review-rating__label:hover ~ .review-rating__label,
+    & > .review-rating__input:checked ~ .review-rating__label:hover,
+    & > .review-rating__input:checked ~ .review-rating__label:hover ~ .review-rating__label,
+    & > .review-rating__label:hover + .review-rating__input:checked ~ .review-rating__label {
+        &::before {
+            content: "";
+            background-color: $star;
+        }
+    }
+    & > .review-rating__label:active {
+        position: relative;
+    }
+    &__label {
+        z-index: 1;
+    }
+
+    &__input {
+    box-shadow: none;
+    background-color: transparent;
+    opacity: 0;
+    }
+
+}
